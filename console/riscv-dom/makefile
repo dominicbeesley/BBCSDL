@@ -19,7 +19,7 @@ LDFLAGS = --specs=nano.specs -u _printf_float -lm -nostartfiles  -Os
 
 .PRECIOUS:bbcbasic.elf
 
-all: version rvbasic.ssd rvbasic.noi
+all: version rvbasic.ssd rvbasic.noi RVBASIC
 
 version build.h:
 	./version.sh
@@ -54,8 +54,8 @@ rvbasic.noi: bbcbasic.elf
 
 RVBASIC: bbcbasic.elf
 	$(OBJCOPY) -O binary $< $@
-	cp RVBASIC ~/hostfs/romsriscv
-	echo "$$.RVBASIC 100000 100000" > ~/hostfs/romsriscv/RVBASIC.inf
+#	cp RVBASIC ~/hostfs/romsriscv
+#	echo "$$.RVBASIC 100000 100000" > ~/hostfs/romsriscv/RVBASIC.inf
 
 rvbasic.ssd: RVBASIC
 	rm -f $@
