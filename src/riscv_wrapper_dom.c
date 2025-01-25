@@ -1037,8 +1037,8 @@ void *sysadr(char *) { // Get the address of an API function
 
 // Check for Escape (if enabled) and kill:
 void trap(void) { // Test for ESCape
-   //TODO:DB:GUESS BODGE
-   if (*((uint8_t *)0xFF) & 0x80) {
+   if (flags & ESCFLG) {
+      flags &= ~ESCFLG;  // Clear Basic's escape flag
       _osbyte(0x7e, NULL, NULL, NULL); // Acknowledge ESCape
       error (17, NULL);  // 'Escape'
    }
