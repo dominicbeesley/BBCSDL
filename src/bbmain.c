@@ -310,10 +310,6 @@ int range2 (char c)
 	        ((c >= '@') && (c <= 'Z'))) ;
 }
 
-
-//DB:
-void text (const char *txt);
-
 // Handle error condition
 // If NULL supplied as msg, look up message from code
 // If ON ERROR is active, execution continues
@@ -334,8 +330,6 @@ void error (int code, const char * msg)
 	errnum = code ;
 	errtxt = msg ;
 	errlin = curlin ;
-	text("DB:ERROR");
-	text(msg);
 	if (code != 0)
 		longjmp (env, code) ;
 	faterr (msg) ;
